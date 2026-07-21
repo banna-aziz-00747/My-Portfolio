@@ -1,0 +1,113 @@
+.contact {
+  padding: 120px clamp(20px, 5vw, 56px) 100px;
+  border-top: 1px solid var(--hairline);
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.contact__main {
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  transition: border-color 0.25s ease, background 0.25s ease;
+  background:
+    linear-gradient(120deg, rgba(200, 127, 74, 0.06), transparent 55%);
+}
+
+.contact__main:hover {
+  border-color: var(--copper-dim);
+  background: linear-gradient(120deg, rgba(200, 127, 74, 0.12), transparent 60%);
+}
+
+.contact__main-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--signal-dim);
+}
+
+.contact__main-email {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.4vw, 34px);
+  color: var(--ink);
+}
+
+.contact__main-arrow {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  color: var(--ink-faint);
+  font-size: 20px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.contact__main:hover .contact__main-arrow {
+  color: var(--signal);
+  transform: translate(3px, -3px);
+}
+
+.contact__channels {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.contact__channel {
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background 0.2s ease;
+}
+
+.contact__channel:last-child {
+  border-bottom: none;
+}
+
+.contact__channel:hover {
+  background: var(--bg-raised);
+}
+
+.contact__channel-label {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+.contact__channel-value {
+  font-size: 14px;
+  color: var(--ink);
+  text-align: right;
+}
+
+@media (max-width: 780px) {
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+  .contact__main-arrow {
+    top: 24px;
+    right: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact__channel {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact__channel-value {
+    text-align: left;
+  }
+}

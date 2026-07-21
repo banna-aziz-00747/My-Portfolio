@@ -1,0 +1,134 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px clamp(20px, 5vw, 56px);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, padding 0.35s ease;
+}
+
+.nav--scrolled {
+  background: rgba(13, 15, 18, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--hairline);
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.nav__mark {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.nav__mark-bracket {
+  color: var(--copper);
+}
+
+.nav__links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-dim);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav__link:hover {
+  color: var(--ink);
+}
+
+.nav__idx {
+  color: var(--signal-dim);
+  font-size: 11px;
+}
+
+.nav__cta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 9px 16px;
+  border: 1px solid var(--copper-dim);
+  color: var(--copper);
+  border-radius: 3px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav__cta:hover {
+  background: var(--copper);
+  color: var(--bg);
+}
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+.nav__toggle span {
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav__toggle--open span:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+.nav__toggle--open span:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+.nav__sheet {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(13, 15, 18, 0.98);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  flex-direction: column;
+  padding: 8px clamp(20px, 5vw, 56px) 20px;
+}
+
+.nav__sheet-link {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink-dim);
+  font-size: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav__sheet-link--cta {
+  color: var(--copper);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  border-bottom: none;
+}
+
+@media (max-width: 860px) {
+  .nav__links,
+  .nav__cta {
+    display: none;
+  }
+  .nav__toggle {
+    display: flex;
+  }
+}

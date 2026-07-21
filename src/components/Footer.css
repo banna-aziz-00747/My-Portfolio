@@ -1,0 +1,25 @@
+.footer {
+  padding: 28px clamp(20px, 5vw, 56px);
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer__line {
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+
+.footer__top {
+  font-size: 11px;
+  color: var(--ink-faint);
+  transition: color 0.2s ease;
+}
+
+.footer__top:hover {
+  color: var(--signal);
+}
