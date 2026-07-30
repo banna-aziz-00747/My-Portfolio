@@ -19,9 +19,37 @@
 }
 
 .stack__group-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--copper);
+}
+
+.stack__led {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 6px var(--signal);
+  animation: led-pulse 2.6s ease-in-out infinite;
+}
+
+.stack__group:nth-child(2n) .stack__led { animation-delay: 0.4s; }
+.stack__group:nth-child(3n) .stack__led { animation-delay: 0.8s; }
+.stack__group:nth-child(4n) .stack__led { animation-delay: 1.2s; }
+.stack__group:nth-child(5n) .stack__led { animation-delay: 1.6s; }
+
+@keyframes led-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    box-shadow: 0 0 4px var(--signal-dim);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 8px var(--signal);
+  }
 }
 
 .stack__items {

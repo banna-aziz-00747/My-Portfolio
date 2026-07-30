@@ -1,0 +1,105 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.boot--closing {
+  opacity: 0;
+  transform: translateY(-3%);
+  pointer-events: none;
+}
+
+.boot__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--hairline) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.18;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black, transparent 75%);
+}
+
+.boot__panel {
+  position: relative;
+  width: min(520px, 86vw);
+  padding: 28px 26px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  background: var(--bg-raised);
+  min-height: 188px;
+}
+
+.boot__line {
+  font-size: 12.5px;
+  color: var(--ink-dim);
+  letter-spacing: 0.02em;
+  margin: 0 0 10px;
+  animation: boot-type 0.35s ease both;
+}
+
+.boot__line:last-of-type {
+  color: var(--signal);
+}
+
+.boot__prompt {
+  color: var(--copper);
+}
+
+@keyframes boot-type {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.boot__bar {
+  margin-top: 18px;
+  height: 2px;
+  background: var(--hairline);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.boot__bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--copper), var(--signal));
+  transition: width 0.25s ease;
+}
+
+.boot__skip {
+  position: absolute;
+  bottom: 28px;
+  right: clamp(20px, 5vw, 56px);
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+
+.boot__skip:hover {
+  color: var(--signal);
+}
+
+@media (max-width: 560px) {
+  .boot__panel {
+    padding: 22px 20px;
+  }
+  .boot__skip {
+    bottom: 20px;
+  }
+}

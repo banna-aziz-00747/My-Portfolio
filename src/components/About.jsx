@@ -1,4 +1,5 @@
 import SectionHeading from './SectionHeading.jsx'
+import Reveal from './Reveal.jsx'
 import './About.css'
 
 export default function About() {
@@ -11,7 +12,7 @@ export default function About() {
       />
 
       <div className="about__grid">
-        <div className="about__copy">
+        <Reveal as="div" className="about__copy">
           <p>
             Before there was a component tree, there was a light table.
             Mohammad started his career as a 2D digital artist, drawing
@@ -35,32 +36,24 @@ export default function About() {
             AI-native development — wiring model calls and n8n automations
             into the products he builds.
           </p>
-        </div>
+        </Reveal>
 
         <div className="about__facts">
-          <div className="about__fact">
-            <span className="mono about__fact-label">BASE</span>
-            <span className="about__fact-value">Chittagong, Bangladesh</span>
-          </div>
-          <div className="about__fact">
-            <span className="mono about__fact-label">FOCUS</span>
-            <span className="about__fact-value">React · Next.js · TypeScript</span>
-          </div>
-          <div className="about__fact">
-            <span className="mono about__fact-label">WORKED WITH</span>
-            <span className="about__fact-value">Clients across Bangladesh &amp; Japan</span>
-          </div>
-          <div className="about__fact">
-            <span className="mono about__fact-label">EDUCATION</span>
-            <span className="about__fact-value">
-              B.Sc. Computer Science &amp; Engineering — International
-              Islamic University Chittagong
-            </span>
-          </div>
-          <div className="about__fact">
-            <span className="mono about__fact-label">ORIGIN</span>
-            <span className="about__fact-value">2D digital artist, animation industry</span>
-          </div>
+          {[
+            ['BASE', 'Chittagong, Bangladesh'],
+            ['FOCUS', 'React · Next.js · TypeScript'],
+            ['WORKED WITH', 'Clients across Bangladesh & Japan'],
+            [
+              'EDUCATION',
+              'B.Sc. Computer Science & Engineering — International Islamic University Chittagong',
+            ],
+            ['ORIGIN', '2D digital artist, animation industry'],
+          ].map(([label, value], i) => (
+            <Reveal key={label} as="div" delay={i * 70} className="about__fact">
+              <span className="mono about__fact-label">{label}</span>
+              <span className="about__fact-value">{value}</span>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

@@ -1,0 +1,48 @@
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease, width 0.25s ease, height 0.25s ease,
+    border-color 0.25s ease, background 0.25s ease;
+}
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  margin: -2.5px 0 0 -2.5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 8px var(--signal);
+}
+
+.cursor-dot--visible,
+.cursor-ring--visible {
+  opacity: 1;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid var(--copper);
+  border-radius: 50%;
+}
+
+.cursor-ring--hover {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-color: var(--signal);
+  background: rgba(111, 227, 196, 0.08);
+}
+
+@media (max-width: 860px) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}

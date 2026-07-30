@@ -1,9 +1,17 @@
 import { Suspense, lazy } from 'react'
+import { useCountUp } from '../hooks/useCountUp.js'
+import { useMagnetic } from '../hooks/useMagnetic.js'
 import './Hero.css'
 
 const CircuitField = lazy(() => import('../three/CircuitField.jsx'))
 
 export default function Hero() {
+  const [yearsRef, years] = useCountUp(6, { suffix: '+', duration: 900 })
+  const [modulesRef, modules] = useCountUp(40, { suffix: '+', duration: 1200 })
+  const [rolesRef, roles] = useCountUp(7, { duration: 800 })
+  const primaryBtnRef = useMagnetic(0.25)
+  const ghostBtnRef = useMagnetic(0.25)
+
   return (
     <section id="top" className="hero">
       <div className="hero__field" aria-hidden="true">
@@ -35,25 +43,29 @@ export default function Hero() {
         </p>
 
         <div className="hero__actions">
-          <a href="#projects" className="hero__btn hero__btn--primary">
+          <a
+            ref={primaryBtnRef}
+            href="#projects"
+            className="hero__btn hero__btn--primary"
+          >
             View selected work
           </a>
-          <a href="#contact" className="hero__btn hero__btn--ghost">
+          <a ref={ghostBtnRef} href="#contact" className="hero__btn hero__btn--ghost">
             Get in touch
           </a>
         </div>
 
         <div className="hero__stats">
-          <div className="hero__stat">
-            <span className="mono hero__stat-num">6+</span>
+          <div ref={yearsRef} className="hero__stat">
+            <span className="mono hero__stat-num">{years}</span>
             <span className="hero__stat-label">Years in production frontend</span>
           </div>
-          <div className="hero__stat">
-            <span className="mono hero__stat-num">40+</span>
+          <div ref={modulesRef} className="hero__stat">
+            <span className="mono hero__stat-num">{modules}</span>
             <span className="hero__stat-label">UI modules shipped at Friends Corp.</span>
           </div>
-          <div className="hero__stat">
-            <span className="mono hero__stat-num">7</span>
+          <div ref={rolesRef} className="hero__stat">
+            <span className="mono hero__stat-num">{roles}</span>
             <span className="hero__stat-label">Engineering roles, Dhaka to Tokyo</span>
           </div>
         </div>

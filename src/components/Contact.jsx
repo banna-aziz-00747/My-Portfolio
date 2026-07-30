@@ -1,4 +1,6 @@
 import SectionHeading from './SectionHeading.jsx'
+import Reveal from './Reveal.jsx'
+import { useMagnetic } from '../hooks/useMagnetic.js'
 import './Contact.css'
 
 const CHANNELS = [
@@ -9,6 +11,8 @@ const CHANNELS = [
 ]
 
 export default function Contact() {
+  const mainRef = useMagnetic(0.08)
+
   return (
     <section id="contact" className="contact">
       <SectionHeading
@@ -19,13 +23,18 @@ export default function Contact() {
       />
 
       <div className="contact__grid">
-        <a href="mailto:banna00747@gmail.com" className="contact__main">
+        <Reveal
+          as="a"
+          ref={mainRef}
+          href="mailto:banna00747@gmail.com"
+          className="contact__main"
+        >
           <span className="mono contact__main-label">START A CONVERSATION</span>
           <span className="contact__main-email">banna00747@gmail.com</span>
           <span className="contact__main-arrow">↗</span>
-        </a>
+        </Reveal>
 
-        <div className="contact__channels">
+        <Reveal as="div" delay={100} className="contact__channels">
           {CHANNELS.map((c) => (
             <a
               key={c.label}
@@ -38,7 +47,7 @@ export default function Contact() {
               <span className="contact__channel-value">{c.value}</span>
             </a>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   )

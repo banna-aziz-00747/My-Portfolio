@@ -1,4 +1,5 @@
 import SectionHeading from './SectionHeading.jsx'
+import Reveal from './Reveal.jsx'
 import './Stack.css'
 
 const GROUPS = [
@@ -55,9 +56,12 @@ export default function Stack() {
       />
 
       <div className="stack__grid">
-        {GROUPS.map((g) => (
-          <div key={g.label} className="stack__group">
-            <span className="mono stack__group-label">{g.label}</span>
+        {GROUPS.map((g, i) => (
+          <Reveal key={g.label} as="div" delay={i * 60} className="stack__group">
+            <span className="mono stack__group-label">
+              <span className="stack__led" aria-hidden="true" />
+              {g.label}
+            </span>
             <div className="stack__items">
               {g.items.map((item) => (
                 <span key={item} className="stack__item">
@@ -65,7 +69,7 @@ export default function Stack() {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

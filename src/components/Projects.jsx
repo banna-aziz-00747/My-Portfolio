@@ -1,4 +1,6 @@
 import SectionHeading from './SectionHeading.jsx'
+import Reveal from './Reveal.jsx'
+import { isFinePointer, prefersReducedMotion } from '../hooks/useReducedMotion.js'
 import './Projects.css'
 
 const PROJECTS = [
@@ -46,6 +48,24 @@ const PROJECTS = [
   },
 ]
 
+function handleTilt(e) {
+  if (prefersReducedMotion() || !isFinePointer()) return
+  const card = e.currentTarget
+  const rect = card.getBoundingClientRect()
+  const px = (e.clientX - rect.left) / rect.width
+  const py = (e.clientY - rect.top) / rect.height
+  card.style.setProperty('--rx', `${(0.5 - py) * 9}deg`)
+  card.style.setProperty('--ry', `${(px - 0.5) * 9}deg`)
+  card.style.setProperty('--mx', `${px * 100}%`)
+  card.style.setProperty('--my', `${py * 100}%`)
+}
+
+function resetTilt(e) {
+  const card = e.currentTarget
+  card.style.setProperty('--rx', '0deg')
+  card.style.setProperty('--ry', '0deg')
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="proj">
@@ -57,13 +77,17 @@ export default function Projects() {
       />
 
       <div className="proj__grid">
-        {PROJECTS.map((p) => (
-          <a
+        {PROJECTS.map((p, i) => (
+          <Reveal
             key={p.id}
+            as="a"
+            delay={i * 80}
             href={p.href}
             target="_blank"
             rel="noreferrer"
             className="proj__card"
+            onMouseMove={handleTilt}
+            onMouseLeave={resetTilt}
           >
             <div className="proj__card-top">
               <span className="mono proj__id">{p.id}</span>
@@ -78,7 +102,7 @@ export default function Projects() {
                 </span>
               ))}
             </div>
-          </a>
+          </Reveal>
         ))}
       </div>
 

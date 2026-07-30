@@ -45,15 +45,41 @@
   color: var(--ink-dim);
   transition: color 0.2s ease;
   position: relative;
+  padding-bottom: 3px;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--signal);
+  box-shadow: 0 0 6px var(--signal-dim);
+  transition: right 0.3s cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 
 .nav__link:hover {
   color: var(--ink);
 }
 
+.nav__link--active {
+  color: var(--ink);
+}
+
+.nav__link--active::after {
+  right: 0;
+}
+
 .nav__idx {
   color: var(--signal-dim);
   font-size: 11px;
+  transition: color 0.2s ease;
+}
+
+.nav__link--active .nav__idx {
+  color: var(--signal);
 }
 
 .nav__cta {

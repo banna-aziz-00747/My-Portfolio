@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useMagnetic } from '../hooks/useMagnetic.js'
 import './Nav.css'
 
 const LINKS = [
@@ -12,11 +13,30 @@ const LINKS = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('')
+  const ctaRef = useMagnetic(0.3)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.getElementById(l.href.slice(1))).filter(Boolean)
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+    )
+
+    sections.forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -27,14 +47,18 @@ export default function Nav() {
 
       <nav className="nav__links">
         {LINKS.map((link, i) => (
-          <a key={link.href} href={link.href} className="nav__link">
+          <a
+            key={link.href}
+            href={link.href}
+            className={`nav__link ${active === link.href ? 'nav__link--active' : ''}`}
+          >
             <span className="mono nav__idx">0{i + 1}</span>
             {link.label}
           </a>
         ))}
       </nav>
 
-      <a href="mailto:banna00747@gmail.com" className="nav__cta">
+      <a ref={ctaRef} href="mailto:banna00747@gmail.com" className="nav__cta">
         Say hello
       </a>
 

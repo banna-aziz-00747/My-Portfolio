@@ -1,4 +1,6 @@
 import SectionHeading from './SectionHeading.jsx'
+import Reveal from './Reveal.jsx'
+import { useInView } from '../hooks/useInView.js'
 import './Experience.css'
 
 const ROLES = [
@@ -96,36 +98,46 @@ export default function Experience() {
 
       <ol className="exp__list">
         {ROLES.map((r) => (
-          <li key={`${r.company}-${r.period}`} className="exp__item">
-            <div className="exp__marker" aria-hidden="true">
-              <span className="exp__marker-dot" />
-              <span className="exp__marker-line" />
-            </div>
-
-            <div className="exp__body">
-              <div className="exp__head">
-                <h3 className="exp__company">{r.company}</h3>
-                <span className="mono exp__period">{r.period}</span>
-              </div>
-              <p className="exp__role">
-                {r.role} <span className="exp__dot">·</span> {r.location}
-              </p>
-              <ul className="exp__points">
-                {r.points.map((pt) => (
-                  <li key={pt}>{pt}</li>
-                ))}
-              </ul>
-              <div className="exp__stack">
-                {r.stack.map((s) => (
-                  <span key={s} className="mono exp__tag">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </li>
+          <ExperienceItem key={`${r.company}-${r.period}`} role={r} />
         ))}
       </ol>
     </section>
+  )
+}
+
+function ExperienceItem({ role: r }) {
+  const [ref, inView] = useInView({ threshold: 0.3 })
+
+  return (
+    <li ref={ref} className={`exp__item ${inView ? 'exp__item--active' : ''}`}>
+      <div className="exp__marker" aria-hidden="true">
+        <span className="exp__marker-dot" />
+        <span className="exp__marker-line">
+          <span className="exp__marker-line-fill" />
+        </span>
+      </div>
+
+      <div className={`exp__body reveal ${inView ? 'reveal--visible' : ''}`}>
+        <div className="exp__head">
+          <h3 className="exp__company">{r.company}</h3>
+          <span className="mono exp__period">{r.period}</span>
+        </div>
+        <p className="exp__role">
+          {r.role} <span className="exp__dot">·</span> {r.location}
+        </p>
+        <ul className="exp__points">
+          {r.points.map((pt) => (
+            <li key={pt}>{pt}</li>
+          ))}
+        </ul>
+        <div className="exp__stack">
+          {r.stack.map((s) => (
+            <span key={s} className="mono exp__tag">
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </li>
   )
 }

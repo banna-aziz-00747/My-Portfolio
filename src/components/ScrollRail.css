@@ -1,0 +1,93 @@
+.rail {
+  position: fixed;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: min(46vh, 420px);
+  z-index: 40;
+  pointer-events: none;
+}
+
+.rail__track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--hairline);
+}
+
+.rail__fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--copper), var(--signal));
+  box-shadow: 0 0 8px var(--signal-dim);
+  transition: height 0.05s linear;
+}
+
+.rail__dot {
+  position: absolute;
+  left: -3px;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+}
+
+.rail__tick {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  padding: 6px 6px 6px 0;
+  margin: -6px 0 0 -6px;
+}
+
+.rail__tick-mark {
+  width: 5px;
+  height: 1px;
+  background: var(--ink-faint);
+  transition: background 0.3s ease, width 0.3s ease;
+}
+
+.rail__tick-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.rail__tick--active .rail__tick-mark {
+  background: var(--signal);
+  width: 10px;
+}
+
+.rail__tick:hover .rail__tick-label {
+  color: var(--signal);
+  opacity: 0.9;
+  transform: translateX(0);
+}
+
+@media (max-width: 1080px) {
+  .rail {
+    left: 14px;
+  }
+  .rail__tick-label {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .rail {
+    display: none;
+  }
+}
