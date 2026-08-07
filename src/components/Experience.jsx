@@ -5,6 +5,38 @@ import './Experience.css'
 
 const ROLES = [
   {
+    company: 'Connect Bandarban',
+    role: 'Solo Founder & Full-Stack Engineer',
+    location: 'Bandarban, Bangladesh',
+    period: 'Jan 2026 — Present',
+    points: [
+      'Designed, built, and shipped a full-stack marketplace PWA.',
+      'Architected the backend around Prisma/PostgreSQL and Express.',
+      'Built a real-time messaging system.',
+      'Instrumented product analytics with PostHog.',
+      'Set up CI/CD from scratch.',
+    ],
+    stack: [
+      'React 19',
+      'TypeScript',
+      'TanStack Router/Query',
+      'Zustand',
+      'Tailwind CSS v4',
+      'Vite',
+      'Node.js',
+      'Express',
+      'Prisma',
+      'PostgreSQL',
+      'Socket.IO',
+      'JWT auth',
+      'PostHog',
+      'Nginx',
+      'PM2',
+      'GitHub Actions',
+      'Contabo VPS',
+    ],
+  },
+  {
     company: 'Friends Corp.',
     role: 'Senior Software Engineer',
     location: 'Tokyo, Remote',
@@ -92,8 +124,8 @@ export default function Experience() {
       <SectionHeading
         index={2}
         label="EXPERIENCE"
-        title="Seven roles, one throughline"
-        note="From hand-drawn animation frames in 2018 to enterprise React systems shipped for Tokyo clients in 2025."
+        title="Eight roles, one throughline"
+        note="From hand-drawn animation frames in 2018, through enterprise React systems for Tokyo clients, to founding and shipping a full-stack marketplace platform of his own in 2026."
       />
 
       <ol className="exp__list">

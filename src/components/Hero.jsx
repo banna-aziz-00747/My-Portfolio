@@ -32,11 +32,11 @@ export default function Hero() {
         </h1>
 
         <p className="hero__role">
-          Senior Frontend Engineer <span className="hero__role-sep">/</span> React, Next.js &amp; TypeScript
+          Senior Full-Stack Engineer <span className="hero__role-sep">/</span> React, Next.js, Node.js &amp; TypeScript
         </p>
 
         <p className="hero__desc">
-          6+ years turning dense product requirements into interfaces
+          Frontend-Leaning Full-Stack Engineer with 6+ years turning dense product requirements into interfaces
           that feel inevitable — architected for scale, tuned for speed,
           and finished with the eye of someone who once drew the pictures
           by hand before he built the systems that render them.
